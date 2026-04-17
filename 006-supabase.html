@@ -1124,7 +1124,7 @@ function exportPDF(){
 }
 
 
-window.addEventListener('DOMContentLoaded', function() {
+window.addEventListener('load', function() {
   db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
   load().then(()=>renderBatteries());
 });
