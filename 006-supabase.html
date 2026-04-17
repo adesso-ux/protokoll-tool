@@ -130,8 +130,8 @@ const CH_BG = {1:'#eeedfc',2:'#ccfbf1',3:'#e0f2fe',4:'#fdf2f8'};
 const CH_FG = {1:'#3730a3',2:'#0d9488',3:'#0369a1',4:'#86198f'};
 
 // ── Supabase ─────────────────────────────────────────────────────────────────
-var SUPABASE_URL = 'https://jzyygwpnohkkvvgrlyul.supabase.co';       // z.B. https://xyz.supabase.co
-var SUPABASE_KEY = 'sb_publishable_9ssxf_ievGJqBIDzqptscg_IDk3iWlw';      // Publishable Key aus Settings → API Keys 
+var SUPABASE_URL = 'DEINE_SUPABASE_URL';       // z.B. https://xyz.supabase.co
+var SUPABASE_KEY = 'DEIN_PUBLISHABLE_KEY';      // Publishable Key aus Settings → API Keys
 var db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 // ── State ────────────────────────────────────────────────────────────────────
@@ -1124,7 +1124,10 @@ function exportPDF(){
 }
 
 
-load().then(()=>renderBatteries());
+window.addEventListener('DOMContentLoaded', function() {
+  db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+  load().then(()=>renderBatteries());
+});
 </script>
 
 <div id="confirm-overlay" class="hidden">
