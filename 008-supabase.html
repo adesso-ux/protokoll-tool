@@ -232,11 +232,11 @@ function renderLogin() {
         <div class="card">
           <div class="field">
             <label class="lbl">E-Mail</label>
-            <input type="text" id="login-email" placeholder="name@example.com" autocomplete="email">
+            <input type="text" id="login-email" placeholder="name@example.com" autocomplete="email" style="display:block;width:100%;padding:9px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);color:var(--text);outline:none;box-sizing:border-box">
           </div>
           <div class="field">
             <label class="lbl">Passwort</label>
-            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" style="width:100%;box-sizing:border-box"
+            <input type="password" id="login-password" placeholder="••••••••" autocomplete="current-password" style="display:block;width:100%;padding:9px 12px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;border:1px solid var(--border);border-radius:var(--r);background:var(--surface);color:var(--text);outline:none;box-sizing:border-box"
               onkeydown="if(event.key==='Enter')doLogin()">
           </div>
           <div id="login-error" style="color:#c0392b;font-size:13px;margin-bottom:12px;min-height:18px"></div>
