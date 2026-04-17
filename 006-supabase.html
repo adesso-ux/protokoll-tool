@@ -106,7 +106,17 @@ textarea{resize:vertical}
 <div id="v-session-test" class="hidden"></div>
 <div id="v-session-report" class="hidden"></div>
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js"></script>
+<script>
+// Supabase per fetch laden (umgeht Script-Blocking)
+fetch('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.39.3/dist/umd/supabase.min.js')
+  .then(r=>r.text())
+  .then(code=>{
+    eval(code);
+    db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+    load().then(()=>renderBatteries());
+  })
+  .catch(e=>alert('Supabase konnte nicht geladen werden: '+e));
+</script>
 <script>
 // ── Constants ────────────────────────────────────────────────────────────────
 const SEV = {label:{1:'Sehr gering',2:'Gering',3:'Mittel',4:'Hoch',5:'Kritisch'},
@@ -1122,17 +1132,7 @@ function exportPDF(){
 
   doc.save(`Protokoll_${(b?.name||'Studie').replace(/\s+/g,'_')}_${(s.personName||'Session').replace(/\s+/g,'_')}_${s.date||'export'}.pdf`);
 }
-
-
-function initSupabase() {
-  if (typeof supabase === 'undefined') {
-    setTimeout(initSupabase, 50);
-    return;
-  }
-  db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-  load().then(()=>renderBatteries());
-}
-initSupabase();
+</script>
 </script>
 
 <div id="confirm-overlay" class="hidden">
